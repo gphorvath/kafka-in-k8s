@@ -11,11 +11,17 @@ create-cluster:
 
 describe:
 	kubectl describe service kafka-svc
+	kubectl get poddisruptionbudgets
 
 deploy-kafka:
 	@echo "Deploying Kafka..."
 	kubectl apply -f kafka.yaml
 	@echo "Kafka deployed!"
+
+apply-pdb:
+	@echo "Applying PodDisruptionBudget..."
+	kubectl apply -f kafka-pdb.yaml
+	@echo "PodDisruptionBudget applied!"
 
 delete-cluster:
 	@echo "Deleting the cluster..."
